@@ -1,0 +1,4 @@
+classes:
+  - system.docker.swarm.manager
+  - cluster.allinone.infra
+  - cluster.allinone.cicd.control

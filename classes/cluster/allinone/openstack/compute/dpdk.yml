@@ -1,0 +1,3 @@
+classes:
+- cluster.allinone.openstack.compute
+- system.opencontrail.compute.dpdk

@@ -1,0 +1,82 @@
+
+parameters:
+  _param:
+    salt_minion_ca_host: ${_param:infra_config_hostname}.${_param:cluster_domain}
+    salt_minion_ca_authority: salt_master_ca
+
+    # kubernetes settings
+    kubernetes_admin_user: admin
+    kubernetes_admin_password: BMAp4WtSxVUn9Ssz
+    kubernetes_admin_token: 2a94OcAytUmSj9TE11kEC1nl75PjghGz
+    kubernetes_kubelet_token: HlkNacYJna49yT6MRAQDfhvCSnYMM0OG
+    kubernetes_kube-proxy_token: HYxvVTFCncKvsCbmZ8c7UFixqjlHgdNd
+    kubernetes_scheduler_token: p6yMS8UvDVFHVQyC7zoDOn6Uegn3V74a
+    kubernetes_controller-manager_token: Eh6gJqAlBfyvvjjfhHWM96Ki83x4J8dr
+    kubernetes_dns_token: j4DxSu24CCt15sBwkMkJZNla7yLS74ly
+    etcd_initial_token: YmVRONWXRpZfQEYqx9amTBb289sLVmCa
+
+    # addresses and hostnames
+    kubernetes_internal_api_address: 10.254.0.1
+    kubernetes_control_hostname: ctl
+    kubernetes_control_address: 10.167.4.10
+    kubernetes_control_node01_hostname: ctl01
+    kubernetes_control_node02_hostname: ctl02
+    kubernetes_control_node03_hostname: ctl03
+    kubernetes_compute_node01_hostname: cmp01
+    kubernetes_compute_node02_hostname: cmp02
+    kubernetes_control_node01_address: 172.16.10.107
+    kubernetes_control_node02_address: 172.16.10.108
+    kubernetes_control_node03_address: 172.16.10.109
+    kubernetes_compute_node01_address: 172.17.10.105
+    kubernetes_compute_node02_address: 172.17.10.106
+
+    cluster_vip_address: ${_param:kubernetes_control_address}
+    cluster_local_address: ${_param:single_address}
+
+    # etcd stuff
+    cluster_node01_hostname: ${_param:kubernetes_control_node01_hostname}
+    cluster_node01_address: ${_param:kubernetes_control_node01_address}
+    cluster_node01_port: 4001
+    cluster_node02_hostname: ${_param:kubernetes_control_node02_hostname}
+    cluster_node02_address: ${_param:kubernetes_control_node02_address}
+    cluster_node02_port: 4001
+    cluster_node03_hostname: ${_param:kubernetes_control_node03_hostname}
+    cluster_node03_address: ${_param:kubernetes_control_node03_address}
+    cluster_node03_port: 4001
+    # calico
+    calico_private_network: 192.168.0.0
+    calico_private_netmask: 16
+
+  linux:
+    network:
+      host:
+        ctl:
+          address: ${_param:kubernetes_control_address}
+          names:
+          - ${_param:kubernetes_control_hostname}
+          - ${_param:kubernetes_control_hostname}.${_param:cluster_domain}
+        ctl01:
+          address: ${_param:kubernetes_control_node01_address}
+          names:
+          - ${_param:kubernetes_control_node01_hostname}
+          - ${_param:kubernetes_control_node01_hostname}.${_param:cluster_domain}
+        ctl02:
+          address: ${_param:kubernetes_control_node02_address}
+          names:
+          - ${_param:kubernetes_control_node02_hostname}
+          - ${_param:kubernetes_control_node02_hostname}.${_param:cluster_domain}
+        ctl03:
+          address: ${_param:kubernetes_control_node03_address}
+          names:
+          - ${_param:kubernetes_control_node03_hostname}
+          - ${_param:kubernetes_control_node03_hostname}.${_param:cluster_domain}
+        cmp01:
+          address: ${_param:kubernetes_compute_node01_address}
+          names:
+          - ${_param:kubernetes_compute_node01_hostname}
+          - ${_param:kubernetes_compute_node01_hostname}.${_param:cluster_domain}
+        cmp02:
+          address: ${_param:kubernetes_compute_node02_address}
+          names:
+          - ${_param:kubernetes_compute_node02_hostname}
+          - ${_param:kubernetes_compute_node02_hostname}.${_param:cluster_domain}
