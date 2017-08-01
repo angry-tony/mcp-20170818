@@ -1,6 +1,6 @@
 
 classes:
-- cluster.mcp-training.infra.config
+- cluster.allinone.infra.config
 parameters:
   _param:
   linux_system_codename: xenial
